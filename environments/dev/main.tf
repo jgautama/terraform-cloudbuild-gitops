@@ -12,29 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Comment main.tf to destroy resources that I have created previously
+# locals {
+#   env = "dev"
+# }
 
-locals {
-  env = "dev"
-}
+# provider "google" {
+#   project = "${var.project}"
+# }
 
-provider "google" {
-  project = "${var.project}"
-}
+# module "vpc" {
+#   source  = "../../modules/vpc"
+#   project = "${var.project}"
+#   env     = "${local.env}"
+# }
 
-module "vpc" {
-  source  = "../../modules/vpc"
-  project = "${var.project}"
-  env     = "${local.env}"
-}
+# module "http_server" {
+#   source  = "../../modules/http_server"
+#   project = "${var.project}"
+#   subnet  = "${module.vpc.subnet}"
+# }
 
-module "http_server" {
-  source  = "../../modules/http_server"
-  project = "${var.project}"
-  subnet  = "${module.vpc.subnet}"
-}
-
-module "firewall" {
-  source  = "../../modules/firewall"
-  project = "${var.project}"
-  subnet  = "${module.vpc.subnet}"
-}
+# module "firewall" {
+#   source  = "../../modules/firewall"
+#   project = "${var.project}"
+#   subnet  = "${module.vpc.subnet}"
+# }
